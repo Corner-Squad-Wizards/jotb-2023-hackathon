@@ -17,18 +17,13 @@ st.sidebar.header("Inference")
 
 """-"""
 
-
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file:
     dataframe = pd.read_csv(uploaded_file)
 
-    """ Dataframe head"""
+    """ Data Exploratory 🔎"""
     st.write(dataframe.head())
 
     if st.button("Train model"):
-
         # TODO: add train function
         st.write('Model successfully trained')
-
-
-
