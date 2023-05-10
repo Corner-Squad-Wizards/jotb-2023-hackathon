@@ -24,8 +24,7 @@ def predict(df):
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file:
     dataframe = pd.read_csv(uploaded_file)
-    # TODO:
-    if st.button("Predict"):
+    with st.spinner('Predicting...'):
         # TODO: upload  validation set
         # predictions = predict(dataframe)
         predictions = model_predict("test1", "hk.loan_data_some")

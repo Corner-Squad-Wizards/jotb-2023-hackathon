@@ -9,10 +9,10 @@ from db.utils import load_table
 from processing.utils import create_model, train_model
 from urllib.error import URLError
 
-st.set_page_config(page_title="Inference", page_icon="👟")
+st.set_page_config(page_title="Training", page_icon="👟")
 
-st.markdown("# Inference")
-st.sidebar.header("Inference")
+st.markdown("# Training")
+st.sidebar.header("Training")
 
 """Please provide us data in csv format with columns: """
 
