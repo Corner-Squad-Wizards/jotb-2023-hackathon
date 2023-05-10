@@ -13,7 +13,7 @@ def get_validations():
 
 st.write("""Here you can find Precision, Recall, F-1 """)
 
-if st.button('Do validations'):
+if st.button("Do validations"):
     # TODO: insert function for validations
     # validate_model("val_test")
     df = get_validation_metrics("val")
