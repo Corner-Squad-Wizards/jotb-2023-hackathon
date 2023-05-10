@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 
 
-st.set_page_config(page_title="DataFrame Demo", page_icon="📊")
+st.set_page_config(page_title="DataFrame Demo", page_icon="✅")
 
 
 st.markdown("# Plotting Demo")
