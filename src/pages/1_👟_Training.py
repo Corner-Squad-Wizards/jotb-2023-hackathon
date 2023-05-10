@@ -28,16 +28,17 @@ st.sidebar.header("Training")
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file:
-    dataframe = pd.read_csv(uploaded_file)
+    with st.spinner('Loading data...'):
+        dataframe = pd.read_csv(uploaded_file)
 
-    """ ## Data Exploratory 🔎"""
-    st.write(dataframe.head())
-    """ ## Correlation matrix"""
-    fig, ax = plt.subplots()
-    sns.heatmap(dataframe.select_dtypes(include="number").corr(), ax=ax)
-    st.write(fig)
+        """ ## Data Exploratory 🔎"""
+        st.write(dataframe.head())
+        """ ## Correlation matrix"""
+        fig, ax = plt.subplots()
+        sns.heatmap(dataframe.select_dtypes(include="number").corr(), ax=ax)
+        st.write(fig)
 
-    if st.button("Train model"):
+    with st.spinner('Training...'):
         # Add table to DB
         load_table(dataframe, "training_new_data")
         # Create and train new model
