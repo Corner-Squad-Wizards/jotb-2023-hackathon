@@ -6,7 +6,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from db.utils import load_table
-from processing.utils import create_model
+from processing.utils import create_model, train_model
 from urllib.error import URLError
 
 st.set_page_config(page_title="Inference", page_icon="👟")
@@ -34,13 +34,13 @@ if uploaded_file:
     st.write(dataframe.head())
     """ ## Correlation matrix"""
     fig, ax = plt.subplots()
-    #sns.heatmap(dataframe.corr(), ax=ax)
-    #st.write(fig)
+    sns.heatmap(dataframe.select_dtypes(include='number').corr(), ax=ax)
+    st.write(fig)
 
     if st.button("Train model"):
         # Add table to DB
         load_table(dataframe,"training_new_data")
         # Create and train new model
         model_name = create_model("LiveTraining","accepted","training_new_data")
-
+        train_model(model_name,"training_new_data")
         st.write('Model successfully trained')
