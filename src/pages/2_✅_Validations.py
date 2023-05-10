@@ -18,6 +18,9 @@ st.markdown("# Validations")
 st.sidebar.header("Validations")
 
 
+def get_validations():
+    return 0.9, 0.9, 0.9
+
 
 st.write("""Here you can find Precision, Recall, F-1 """)
 
