@@ -34,25 +34,25 @@ def train_model(model: str, table: str):
 
 
 def validate_model(model: str = "", val_name: str = "") -> pd.DataFrame:
-    # generic_query(f"VALIDATE MODEL {model} From {dataset}")
-    return generic_query(
-        f"VALIDATE MODEL AcceptLoanReal2 AS {val_name} USE test3 from hk.loan_data_few"
-    )
+    last_training_run = get_trained_models().iloc[-1]
+    model_name = last_training_run['MODEL_NAME']
+    validation_name = "val_"+model_name
+    trained_model_name = last_training_run['TRAINED_MODEL_NAME']
+    return generic_query(f"VALIDATE MODEL {model_name} USE {trained_model_name} from hk.validation_new_data")
 
-
-def get_validation_metrics(val: str):
-    return generic_query(
-        f"select * from information_schema.ml_validation_metrics WHERE VALIDATION_RUN_NAME = '{val}'"
-    )
-
+def get_validation_metrics():
+    metrics = generic_query(f"select * from information_schema.ml_validation_metrics")
+    metrics = metrics.iloc[:-5]
+    return metrics
 
 def get_trained_models() -> pd.DataFrame:
     return generic_query("SELECT * FROM INFORMATION_SCHEMA.ML_TRAINED_MODELS")
 
+def get_training_runs()-> pd.DataFrame:
+    return generic_query("SELECT * FROM INFORMATION_SCHEMA.ML_TRAINING_RUNS")
 
-def get_defined_models() -> pd.DataFrame:
+def get_defined_models()-> pd.DataFrame:
     return generic_query("SELECT * FROM INFORMATION_SCHEMA.ML_MODELS")
-
 
 # model_predict('test1', 'hk.loan_data_some')
 def model_predict(model: str, validation_set: str) -> pd.DataFrame:
