@@ -8,13 +8,7 @@ st.set_page_config(page_title="Inference", page_icon="🔎")
 st.markdown("# Inference")
 st.sidebar.header("Inference")
 
-"""Please provide us data which fit: """
-
-"""-"""
-
-"""-"""
-
-"""-"""
+"""Please provide us data which fit"""
 
 
 def predict(df):
