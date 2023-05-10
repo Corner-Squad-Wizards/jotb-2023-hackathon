@@ -13,10 +13,16 @@ def inspect_schemas():
                 print("\t\tcolumn:", column)
 
 def query_table(cols: list, table: str) -> pd.DataFrame:
-    sql_query = f"SELECT {','.join(cols)} FROM {table}"
+    sql_query = f"SELECT {', '.join(cols)} FROM {table}"
     with engine.connect() as connection:
         result = connection.execute(text(sql_query))
         return pd.DataFrame(result)
+    
+def generic_query(sql_text: str):
+    with engine.connect() as connection:
+        result = connection.execute(text(sql_text))
+        if result:
+            return pd.DataFrame(result)
     
 def load_table(df: pd.DataFrame, table_name: str, schema: str = 'hk', if_exists: str = 'replace'):
     with engine.begin() as connection:
