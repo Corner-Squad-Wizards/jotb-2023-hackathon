@@ -1,4 +1,5 @@
 import pandas as pd
+from processing.utils import model_predict
 import streamlit as st
 import matplotlib.pyplot as plt
 st.set_page_config(page_title="Inference", page_icon="🔎")
@@ -24,7 +25,9 @@ if uploaded_file:
     dataframe = pd.read_csv(uploaded_file)
     # TODO:
     if st.button("Predict"):
-        predictions = predict(dataframe)
+        # TODO: upload  validation set
+        # predictions = predict(dataframe)
+        predictions = model_predict('test1', 'hk.loan_data_some')
         st.markdown("# Ordered predictions")
         st.write(predictions.head(10))
         st.markdown("# How many loan we sell?")
