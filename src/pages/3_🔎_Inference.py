@@ -28,17 +28,26 @@ if uploaded_file:
         # TODO: upload  validation set
         # predictions = predict(dataframe)
         predictions = model_predict('test1', 'hk.loan_data_some')
+        total = len(predictions)
+        labels = 'Accepted', 'Rejected'
+
         st.markdown("# Ordered predictions")
         st.write(predictions.head(10))
-        st.markdown("# How many loan we sell?")
-        # Pie chart, where the slices will be ordered and plotted counter-clockwise:
-        labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
-        sizes = [15, 30, 45, 10]
-        explode = (0, 0.1, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
+        st.markdown("# Real likelihood of being accepted")
+        accepted_count = (predictions["accepted"] == 1).sum()
+        sizes = [accepted_count, total - accepted_count]
         fig1, ax1 = plt.subplots()
-        ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-                shadow=True, startangle=90)
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
+        ax1.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+        ax1.axis('equal')
         st.pyplot(fig1)
+
+        st.markdown("# Predicted likelihood of being accepted")
+        prediction_count = (predictions["prediction"] == '1').sum()
+        p = predictions["prediction"]
+        p.describe()
+        sizes2 = [prediction_count, total - prediction_count]
+        fig2, ax2 = plt.subplots()
+        ax2.pie(sizes2, labels=labels, autopct='%1.1f%%', startangle=90)
+        ax2.axis('equal')
+        st.pyplot(fig2)
