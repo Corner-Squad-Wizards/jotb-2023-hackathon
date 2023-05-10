@@ -1,15 +1,15 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Loan recommendation",
+    page_title="Loan Approval",
     page_icon="👋",
 )
 
-st.write("# Loan Recommendation! 👋")
+st.write("# Loan Approval! 👋")
 
 st.markdown(
     """
-    Loan Recommendation is an open-source app built specifically for
+    Loan Approval is an open-source app built specifically for
     Loan analytics .
     **👈 go through pages to start
 """

@@ -1,2 +1,6 @@
 streamlit
+sqlalchemy
 sqlalchemy-iris
+seaborn
+pandas
+matplotlib
