@@ -2,7 +2,7 @@ from sqlalchemy import text, create_engine, inspect
 import pandas as pd
 
 engine = create_engine(
-    "iris://SQLAdmin:joTB-2023@k8s-f444a1c6-a4058360-90ad00025c-d20a3c2e72757fae.elb.eu-central-1.amazonaws.com:1972/USER"
+    "iris://SQLAdmin:joTB-2023@k8s-f444a1c6-ace99720-03c09b310a-a1e451144003038a.elb.eu-central-1.amazonaws.com:1972/USER"
 )
 
 

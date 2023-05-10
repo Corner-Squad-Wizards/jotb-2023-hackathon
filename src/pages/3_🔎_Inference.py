@@ -2,6 +2,7 @@ import pandas as pd
 from processing.utils import model_predict
 import streamlit as st
 import matplotlib.pyplot as plt
+from db.utils import load_table
 
 st.set_page_config(page_title="Inference", page_icon="🔎")
 
@@ -10,24 +11,17 @@ st.sidebar.header("Inference")
 
 """Please provide us data which fit: """
 
-"""-"""
-
-"""-"""
-
-"""-"""
-
-
-def predict(df):
-    return df
 
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file:
     dataframe = pd.read_csv(uploaded_file)
     with st.spinner('Predicting...'):
-        # TODO: upload  validation set
-        # predictions = predict(dataframe)
-        predictions = model_predict("test1", "hk.loan_data_some")
+        df = pd.read_csv(uploaded_file)
+        # Add table to DB
+        load_table(df,"prediction_new_data")
+        # Predict model
+        predictions = model_predict()
         total = len(predictions)
         labels = "Accepted", "Rejected"
 

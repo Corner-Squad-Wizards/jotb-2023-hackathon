@@ -30,10 +30,8 @@ if uploaded_file:
     df = pd.read_csv(uploaded_file)
     # Add table to DB
     load_table(df,"validation_new_data")
-    print("hola1")
     # Validate latest model on new data
     validate_model()
-    print("hola2")
     # Get validation metrics
     metrics = get_validation_metrics()
     print("hola3")
