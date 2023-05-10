@@ -17,7 +17,7 @@ We fed our model using the Kaggle [All Lending Club loan dataset](https://www.ka
 ## Installing
 run the command
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Running
